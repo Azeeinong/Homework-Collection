@@ -1,0 +1,24 @@
+//用递归方法找出一个数组中最大元素的值及其位置。
+#include<stdio.h>
+#define n 5
+int compare(int a[], int size);
+void main(){
+	int count = 0;
+	int a[n] = { 0 };
+	printf("请输入五个数\n");
+	for (count = 0; count < n; count++)
+		scanf("%d", &a[count]);
+	printf("最大数为%d\n", compare(a, n));
+}
+// 1 5 3 4 2
+int compare(int a[], int size) {
+	int max,x,y;
+	x = a[size-1];
+	if (size - 1 == 0)
+		max = a[0];
+	else if (x - compare(a, size - 1) > 0)
+		max = a[size - 1];
+	else
+		max = compare(a, size - 1);
+	return max;
+}
