@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define n 255
+void main() {
+	int b,count,re=1,count2;
+	int a[n] = { 1, };//从第一位开始乘，如果这里初始化全为0的话就乘不起来了。
+	for (b =1; b < 101; b++) {
+		for (count = 0; count < n; count++)
+			a[count] = a[count] * b;//这里是数组里面每个元素都乘，就是我给你解释的那个。
+		for (count = 0; count < n; count++) {
+			if (a[count] > 9999) {
+				a[count + 1] = a[count + 1] + a[count] / 10000;
+				a[count] = a[count] % 10000;
+			}//这个for-if是检查有没有超过四位数。
+		}
+	}
+	for (count = n-1; count >=0; count--) {
+		if (a[count] != 0) {
+			re = count;
+			break;
+		}
+	}//要从后往前输出的话，就是要把后面为0的元素全部不输出
+	 //上面这个for就是找数组从哪开始的，re用来记录开始的点
+	for (count = re; count >= 0; count--) {
+		printf("%d", a[count]);
+		if (a[count] == 0)
+			printf("000");
+	}//这里就是输出啦，printf"000"是因为最前面有几个数组是全部为0的
+	 //如果只printf a[count]的话就会少很多0，所以用了一个比较笨的方法，这里不懂怎么改进。
+}
