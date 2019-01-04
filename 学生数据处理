@@ -1,0 +1,103 @@
+#include<stdio.h>
+#define n 3
+struct Info
+{
+	int num;
+	char name[99];
+	int age;
+	int score;
+};
+void Input(struct Info stu[],int len);
+void Output(struct Info stu[], int len);
+void CompareNum(struct Info stu[],int len);
+void CompareName(struct Info stu[], int len);
+void CompareAge(struct Info stu[],int len);
+void CompareScore(struct Info stu[], int len);
+void main() {
+	int s;
+	struct Info stu[n] = { {01,"a",10,90}, {04,"b",10,90},{03,"c",10,90} };
+	Input(stu, sizeof stu/ sizeof stu[0]);
+	printf("请选择你想要的排列方式\n输入“1”为按学号排序\n输入“2”为按姓名排序\n输入“3”为按年龄排序\n输入“4”为按分数排序\n");
+	scanf("%d", &s);
+	switch (s)
+	{
+	case 1: CompareNum(stu, sizeof stu / sizeof stu[0]); break;
+	case 2: CompareName(stu, sizeof stu / sizeof stu[0]); break;
+	case 3:	CompareAge(stu, sizeof stu / sizeof stu[0]); break;
+	case 4: CompareScore(stu, sizeof stu / sizeof stu[0]); break;
+	default:
+		printf("您输入的数字无效，排列前的数据为\n"); break;
+	}
+	Output(stu, sizeof stu / sizeof stu[0]);
+	
+}
+void Input(struct Info stu[],int len) {
+	int con;
+	for (con = 0; con < len; con++) {
+		printf("请输入第%d位同学的数据（学号，姓名，年龄，分数）\n",con+1);
+		scanf("%d%s%d%d", &stu[con].num,stu[con].name,&stu[con].age,&stu[con].score);
+	}
+}
+void Output(struct Info stu[], int len) {
+	int con;
+	printf("Num\tName\tAge\tScore\n");
+	for (con = 0; con < len; con++) {
+		printf("%d\t", stu[con].num);
+		printf("%s\t", stu[con].name);
+		printf("%d\t", stu[con].age);
+		printf("%d\t", stu[con].score);
+		printf("\n");
+	}
+}
+void CompareNum(struct Info stu[], int len) {
+	int con,a;
+	struct Info swag;
+	for (a = 1; a < len; a++) {
+		for (con = 0; con < len-1; con++) {
+			if(stu[con].num>stu[con+1].num){
+				swag = stu[con + 1];
+				stu[con + 1] = stu[con];
+				stu[con] = swag;
+			}
+		}
+	}
+}
+void CompareName(struct Info stu[], int len) {
+	int con, a;
+	struct Info swag;
+	for (a = 1; a < len; a++) {
+		for (con = 0; con < len - 1; con++) {
+			if ("stu[con].name" > "stu[con + 1].name") {
+				swag = stu[con + 1];
+				stu[con + 1] = stu[con];
+				stu[con] = swag;
+			}
+		}
+	}
+}
+void CompareAge(struct Info stu[], int len) {
+	int con, a;
+	struct Info swag;
+	for (a = 1; a < len; a++) {
+		for (con = 0; con < len-1; con++) {
+			if (stu[con].age > stu[con + 1].age) {
+				swag = stu[con + 1];
+				stu[con + 1] = stu[con];
+				stu[con] = swag;
+			}
+		}
+	}
+}
+void CompareScore(struct Info stu[], int len) {
+	int con, a;
+	struct Info swag;
+	for (a = 1; a < len; a++) {
+		for (con = 0; con < len-1; con++) {
+			if (stu[con].score > stu[con + 1].score) {
+				swag = stu[con + 1];
+				stu[con + 1] = stu[con];
+				stu[con] = swag;
+			}
+		}
+	}
+}
