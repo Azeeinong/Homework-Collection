@@ -5,7 +5,7 @@ void main() {
 	int a[n] = { 1, };//从第一位开始乘，如果这里初始化全为0的话就乘不起来了。
 	for (b =1; b < 101; b++) {
 		for (count = 0; count < n; count++)
-			a[count] = a[count] * b;//这里是数组里面每个元素都乘，就是我给你解释的那个。
+			a[count] = a[count] * b;
 		for (count = 0; count < n; count++) {
 			if (a[count] > 9999) {
 				a[count + 1] = a[count + 1] + a[count] / 10000;
